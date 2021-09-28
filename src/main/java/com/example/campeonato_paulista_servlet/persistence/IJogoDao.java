@@ -8,4 +8,5 @@ import java.util.Date;
 
 public interface IJogoDao {
     ArrayList<Jogo> buscarJogosDaData(Date data) throws SQLException;
+    void definirResultadosDaData(Date data) throws SQLException;
 }

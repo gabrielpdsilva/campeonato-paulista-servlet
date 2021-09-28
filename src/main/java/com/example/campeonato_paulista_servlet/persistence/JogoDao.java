@@ -50,4 +50,10 @@ public class JogoDao implements IJogoDao {
         ps.close();
         return jogos;
     }
+
+    @Override
+    public void definirResultadosDaData(Date data) throws SQLException {
+        // TODO
+        System.out.println("A implementar, eu devo chamar a procedure que define os gols");
+    }
 }
