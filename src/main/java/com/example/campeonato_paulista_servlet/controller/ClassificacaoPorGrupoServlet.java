@@ -3,6 +3,7 @@ package com.example.campeonato_paulista_servlet.controller;
 import com.example.campeonato_paulista_servlet.model.Grupo;
 import com.example.campeonato_paulista_servlet.model.TimeDoCampeonato;
 import com.example.campeonato_paulista_servlet.persistence.GrupoDao;
+import com.example.campeonato_paulista_servlet.persistence.IGrupoDao;
 import com.example.campeonato_paulista_servlet.persistence.ITimeDoCampeonatoDao;
 import com.example.campeonato_paulista_servlet.persistence.TimeDoCampeonatoDao;
 
@@ -17,13 +18,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "exibirGruposServlet", value = "/classificacao_geral")
-public class ClassificacaoGeralServlet extends HttpServlet {
+@WebServlet(name = "classificacaoPorGrupoServlet", value = "/classificacao_por_grupo")
+public class ClassificacaoPorGrupoServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private ITimeDoCampeonatoDao tdcDao;
 
-    public ClassificacaoGeralServlet() {
+    public ClassificacaoPorGrupoServlet() {
         try {
             tdcDao = new TimeDoCampeonatoDao();
         } catch (ClassNotFoundException | SQLException e) {
@@ -41,9 +42,12 @@ public class ClassificacaoGeralServlet extends HttpServlet {
         String erro = "";
         List<TimeDoCampeonato> listaDeTimesDoCampeonato = new ArrayList<TimeDoCampeonato>();
         try {
-            if(cmd.contains("Exibir classificacao")) {
-                listaDeTimesDoCampeonato = tdcDao.buscarTodosOsTimesDoCampeonato();
-                saida = "Busca realizada com sucesso!";
+            String letraDoGrupo = request.getParameter("grupo").toUpperCase();
+            if (cmd.contains("Buscar grupo")) {
+                Grupo grupo = new Grupo();
+                grupo.setGrupo(letraDoGrupo);
+                listaDeTimesDoCampeonato = tdcDao.buscarTimesDoGrupo(grupo);
+                saida = "Grupo encontrado com sucesso!";
             }
         } catch (SQLException e) {
             erro = e.getMessage();
@@ -52,8 +56,9 @@ public class ClassificacaoGeralServlet extends HttpServlet {
             request.setAttribute("saida", saida);
             request.setAttribute("erro", erro);
             request.setAttribute("campeonato", listaDeTimesDoCampeonato);
-            RequestDispatcher rd = request.getRequestDispatcher("classificacao_geral.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("classificacao_por_grupo.jsp");
             rd.forward(request, response);
         }
     }
+
 }
