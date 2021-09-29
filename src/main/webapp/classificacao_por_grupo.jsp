@@ -49,6 +49,9 @@
             <tbody>
             <c:forEach var="time" items="${campeonato }">
                 <!--TODO use proper condition-->
+                <!--
+                "Os 2 piores do campeonato deve estar destacados"
+                -->
                 <c:if test="${time.pontos <= 6 }">
                     <tr style="background-color: red">
                         <td>${time.time.nomeTime}</td>
