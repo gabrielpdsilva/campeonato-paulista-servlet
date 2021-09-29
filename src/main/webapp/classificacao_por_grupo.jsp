@@ -48,17 +48,34 @@
             </thead>
             <tbody>
             <c:forEach var="time" items="${campeonato }">
-                <tr>
-                    <td>${time.time.nomeTime}</td>
-                    <td>${time.numJogosDisputados}</td>
-                    <td>${time.vitorias}</td>
-                    <td>${time.empates}</td>
-                    <td>${time.derrotas}</td>
-                    <td>${time.golsMarcados}</td>
-                    <td>${time.golsSofridos}</td>
-                    <td>${time.saldoGols}</td>
-                    <td>${time.pontos}</td>
-                </tr>
+                <!--TODO use proper condition-->
+                <c:if test="${time.pontos <= 6 }">
+                    <tr style="background-color: red">
+                        <td>${time.time.nomeTime}</td>
+                        <td>${time.numJogosDisputados}</td>
+                        <td>${time.vitorias}</td>
+                        <td>${time.empates}</td>
+                        <td>${time.derrotas}</td>
+                        <td>${time.golsMarcados}</td>
+                        <td>${time.golsSofridos}</td>
+                        <td>${time.saldoGols}</td>
+                        <td>${time.pontos}</td>
+                    </tr>
+                </c:if>
+
+                <c:if test="${time.pontos > 6 }">
+                    <tr>
+                        <td>${time.time.nomeTime}</td>
+                        <td>${time.numJogosDisputados}</td>
+                        <td>${time.vitorias}</td>
+                        <td>${time.empates}</td>
+                        <td>${time.derrotas}</td>
+                        <td>${time.golsMarcados}</td>
+                        <td>${time.golsSofridos}</td>
+                        <td>${time.saldoGols}</td>
+                        <td>${time.pontos}</td>
+                    </tr>
+                </c:if>
             </c:forEach>
             </tbody>
         </table>

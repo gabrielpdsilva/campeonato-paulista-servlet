@@ -29,7 +29,8 @@ public class TimeDoCampeonatoDao implements ITimeDoCampeonatoDao {
         sql.append("FROM campeonato_temp ct, times t, grupos g ");
         sql.append("WHERE ct.nome_time = t.nome_time ");
         sql.append("AND t.codigo_time = g.codigo_time ");
-        sql.append("AND g.grupo = ?");
+        sql.append("AND g.grupo = ? ");
+        sql.append("ORDER BY ct.pontos DESC");
         PreparedStatement ps = c.prepareStatement(sql.toString());
         ps.setString(1, String.valueOf(grupo.getGrupo()));
         ResultSet rs = ps.executeQuery();
