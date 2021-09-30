@@ -29,7 +29,7 @@
     </c:if>
 </div>
 
-<c:if test="${not empty campeonato }">
+<c:if test="${not empty listaDeTimesDoGrupo }">
     <div>
         <h1>Grupo</h1>
         <table border = 1>
@@ -47,9 +47,13 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="time" items="${campeonato }">
+            <c:forEach var="time" items="${listaDeTimesDoGrupo }">
                 <!--TODO use proper condition-->
-                <c:if test="${time.pontos <= 6 }">
+                <!--
+                "Os 2 piores do campeonato deve estar destacados"
+                -->
+                <c:if test="${time.time.nomeTime == listaPioresTimesDoCampeonato[0].time.nomeTime ||
+                    time.time.nomeTime == listaPioresTimesDoCampeonato[1].time.nomeTime}">
                     <tr style="background-color: red">
                         <td>${time.time.nomeTime}</td>
                         <td>${time.numJogosDisputados}</td>
@@ -63,7 +67,8 @@
                     </tr>
                 </c:if>
 
-                <c:if test="${time.pontos > 6 }">
+                <c:if test="${time.time.nomeTime != listaPioresTimesDoCampeonato[0].time.nomeTime &&
+                    time.time.nomeTime != listaPioresTimesDoCampeonato[1].time.nomeTime}">
                     <tr>
                         <td>${time.time.nomeTime}</td>
                         <td>${time.numJogosDisputados}</td>

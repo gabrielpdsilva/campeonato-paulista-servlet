@@ -40,14 +40,22 @@ public class ClassificacaoPorGrupoServlet extends HttpServlet {
         String cmd = request.getParameter("button");
         String saida = "";
         String erro = "";
-        List<TimeDoCampeonato> listaDeTimesDoCampeonato = new ArrayList<TimeDoCampeonato>();
+        List<TimeDoCampeonato> listaDeTimesDoGrupo = new ArrayList<TimeDoCampeonato>();
+        List<TimeDoCampeonato> listaDeTodosOsTimes = new ArrayList<TimeDoCampeonato>();
+        List<TimeDoCampeonato> listaPioresTimesDoCampeonato = new ArrayList<TimeDoCampeonato>();
         try {
             String letraDoGrupo = request.getParameter("grupo").toUpperCase();
             if (cmd.contains("Buscar grupo")) {
                 Grupo grupo = new Grupo();
                 grupo.setGrupo(letraDoGrupo);
-                listaDeTimesDoCampeonato = tdcDao.buscarTimesDoGrupo(grupo);
+                listaDeTimesDoGrupo = tdcDao.buscarTimesDoGrupo(grupo);
+                listaDeTodosOsTimes = tdcDao.buscarTodosOsTimesDoCampeonato();
+                listaPioresTimesDoCampeonato.add(listaDeTodosOsTimes.get(14));
+                listaPioresTimesDoCampeonato.add(listaDeTodosOsTimes.get(15));
                 saida = "Grupo encontrado com sucesso!";
+                for(TimeDoCampeonato t: listaPioresTimesDoCampeonato) {
+                    System.out.println(t.getTime().getNomeTime());
+                }
             }
         } catch (SQLException e) {
             erro = e.getMessage();
@@ -55,7 +63,8 @@ public class ClassificacaoPorGrupoServlet extends HttpServlet {
         } finally {
             request.setAttribute("saida", saida);
             request.setAttribute("erro", erro);
-            request.setAttribute("campeonato", listaDeTimesDoCampeonato);
+            request.setAttribute("listaDeTimesDoGrupo", listaDeTimesDoGrupo);
+            request.setAttribute("listaPioresTimesDoCampeonato", listaPioresTimesDoCampeonato);
             RequestDispatcher rd = request.getRequestDispatcher("classificacao_por_grupo.jsp");
             rd.forward(request, response);
         }
