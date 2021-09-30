@@ -53,9 +53,6 @@ public class ClassificacaoPorGrupoServlet extends HttpServlet {
                 listaPioresTimesDoCampeonato.add(listaDeTodosOsTimes.get(14));
                 listaPioresTimesDoCampeonato.add(listaDeTodosOsTimes.get(15));
                 saida = "Grupo encontrado com sucesso!";
-                for(TimeDoCampeonato t: listaPioresTimesDoCampeonato) {
-                    System.out.println(t.getTime().getNomeTime());
-                }
             }
         } catch (SQLException e) {
             erro = e.getMessage();

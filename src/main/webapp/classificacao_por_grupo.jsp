@@ -48,7 +48,7 @@
             </thead>
             <tbody>
             <c:forEach var="time" items="${listaDeTimesDoGrupo }">
-                
+
                 <c:if test="${time.time.nomeTime == listaPioresTimesDoCampeonato[0].time.nomeTime ||
                     time.time.nomeTime == listaPioresTimesDoCampeonato[1].time.nomeTime}">
                     <tr style="background-color: red">

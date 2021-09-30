@@ -18,19 +18,14 @@ public class TimeDoCampeonatoDao implements ITimeDoCampeonatoDao {
         c = gDao.getConnection();
     }
 
-    // TODO implement using proper function
     @Override
     public List<TimeDoCampeonato> buscarTimesDoGrupo(Grupo grupo) throws SQLException {
         List<TimeDoCampeonato> listaTimesNoCampeonato = new ArrayList<TimeDoCampeonato>();
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT ct.nome_time, ct.num_jogos_disputados , ct.vitorias, ");
-        sql.append("ct.empates, ct.derrotas, ct.gols_marcados, ct.gols_sofridos, ");
-        sql.append("ct.saldo_gols, ct.pontos ");
-        sql.append("FROM campeonato_temp ct, times t, grupos g ");
-        sql.append("WHERE ct.nome_time = t.nome_time ");
-        sql.append("AND t.codigo_time = g.codigo_time ");
-        sql.append("AND g.grupo = ? ");
-        sql.append("ORDER BY ct.pontos DESC");
+        sql.append("SELECT nome_time, num_jogos AS num_jogos_disputados , vitoria AS vitorias, ");
+        sql.append("empate AS empates, derrota AS derrotas, gols_marcados, gols_sofridos, ");
+        sql.append("saldo_gols, pontos ");
+        sql.append("FROM fn_grupos_paulistao(?) ORDER BY pontos DESC, vitoria DESC, gols_marcados DESC, saldo_gols DESC");
         PreparedStatement ps = c.prepareStatement(sql.toString());
         ps.setString(1, String.valueOf(grupo.getGrupo()));
         ResultSet rs = ps.executeQuery();
