@@ -49,15 +49,14 @@ public class TimeDoCampeonatoDao implements ITimeDoCampeonatoDao {
         return listaTimesNoCampeonato;
     }
 
-    // TODO implement using function, such as sp_buscar_campeonato()
     @Override
     public List<TimeDoCampeonato> buscarTodosOsTimesDoCampeonato() throws SQLException {
         List<TimeDoCampeonato> listaTimesNoCampeonato = new ArrayList<TimeDoCampeonato>();
         StringBuffer sql = new StringBuffer();
-        sql.append("SELECT nome_time, num_jogos_disputados, vitorias, empates, ");
-        sql.append("derrotas, gols_marcados, gols_sofridos, ");
-        sql.append("saldo_gols, pontos FROM campeonato_temp ");
-        sql.append("ORDER BY pontos DESC");
+        sql.append("SELECT nome_time, num_jogos AS num_jogos_disputados , vitoria AS vitorias, ");
+        sql.append("empate AS empates, derrota AS derrotas, gols_marcados, gols_sofridos, saldo_gols, pontos ");
+        sql.append("FROM fn_classificação_geral() ");
+        sql.append("Order by pontos DESC, vitoria DESC, gols_marcados DESC, saldo_gols DESC");
         PreparedStatement ps = c.prepareStatement(sql.toString());
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
