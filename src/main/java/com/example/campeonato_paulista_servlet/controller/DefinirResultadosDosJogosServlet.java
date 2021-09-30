@@ -57,7 +57,6 @@ public class DefinirResultadosDosJogosServlet extends HttpServlet {
 
         // Botao buscar jogos
         if (cmd.contains("Buscar jogos")) {
-            System.out.println("Clicou em buscar jogos");
             try {
                 listaDeJogos = jDao.buscarJogosDaData(data);
                 if(listaDeJogos.isEmpty()) {
@@ -79,7 +78,6 @@ public class DefinirResultadosDosJogosServlet extends HttpServlet {
 
         // Botao definir resultados
         if (cmd.contains("Definir resultados")) {
-            System.out.println("Clicou em definir resultados");
             try {
                 jDao.definirResultadosDaData(data);
                 listaDeJogos = jDao.buscarJogosDaData(data);

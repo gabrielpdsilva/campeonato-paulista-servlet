@@ -80,7 +80,6 @@ public class TimeDoCampeonatoDao implements ITimeDoCampeonatoDao {
         return listaTimesNoCampeonato;
     }
 
-    // TODO implement using proper function
     @Override
     public List<QuartaDeFinal> buscarQuartasDeFinal() throws SQLException {
         List<QuartaDeFinal> listaTimesNoCampeonato = new ArrayList<QuartaDeFinal>();

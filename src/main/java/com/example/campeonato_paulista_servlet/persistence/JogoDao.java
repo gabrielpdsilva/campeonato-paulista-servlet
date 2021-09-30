@@ -3,10 +3,7 @@ package com.example.campeonato_paulista_servlet.persistence;
 import com.example.campeonato_paulista_servlet.model.Jogo;
 import com.example.campeonato_paulista_servlet.model.Time;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -53,7 +50,10 @@ public class JogoDao implements IJogoDao {
 
     @Override
     public void definirResultadosDaData(Date data) throws SQLException {
-        // TODO
-        System.out.println("A implementar, eu devo chamar a procedure que define os gols");
+        String sql = "{CALL sp_gols_jogos ? }";
+        CallableStatement cs = c.prepareCall(sql);
+        cs.setDate(1, new java.sql.Date(data.getTime()));
+        cs.execute();
+        cs.close();
     }
 }

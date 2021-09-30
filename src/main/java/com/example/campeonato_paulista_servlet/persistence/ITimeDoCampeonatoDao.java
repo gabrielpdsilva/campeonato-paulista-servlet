@@ -2,7 +2,6 @@ package com.example.campeonato_paulista_servlet.persistence;
 
 import com.example.campeonato_paulista_servlet.model.Grupo;
 import com.example.campeonato_paulista_servlet.model.QuartaDeFinal;
-import com.example.campeonato_paulista_servlet.model.Time;
 import com.example.campeonato_paulista_servlet.model.TimeDoCampeonato;
 
 import java.sql.SQLException;
