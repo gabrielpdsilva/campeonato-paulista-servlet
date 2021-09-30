@@ -24,149 +24,26 @@
     </div>
 
     <div>
-        <c:if test="${not empty timesDoGrupoA }">
-            <h1>Grupo A</h1>
+        <c:if test="${not empty todasAsQuartasDeFinal }">
+            <h1>Quartas de Final</h1>
             <table border = 1>
                 <thead>
                 <tr>
-                    <th>Nome do time</th>
-                    <th>Numero de jogos</th>
-                    <th>Vitorias</th>
-                    <th>Empates</th>
-                    <th>Derrotas</th>
-                    <th>Gols marcados</th>
-                    <th>Gols sofridos</th>
-                    <th>Saldo de gols</th>
-                    <th>Pontos</th>
+                    <th>Nome do primeiro time</th>
+                    <th>Nome do segundo time</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="time" items="${timesDoGrupoA }">
+                <c:forEach var="quartasDeFinal" items="${todasAsQuartasDeFinal }">
                     <tr>
-                        <td>${time.time.nomeTime}</td>
-                        <td>${time.numJogosDisputados}</td>
-                        <td>${time.vitorias}</td>
-                        <td>${time.empates}</td>
-                        <td>${time.derrotas}</td>
-                        <td>${time.golsMarcados}</td>
-                        <td>${time.golsSofridos}</td>
-                        <td>${time.saldoGols}</td>
-                        <td>${time.pontos}</td>
+                        <td>${quartasDeFinal.primeiroTime.nomeTime}</td>
+                        <td>${quartasDeFinal.segundoTime.nomeTime}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </c:if>
     </div>
-
-    <div>
-        <c:if test="${not empty timesDoGrupoB }">
-            <h1>Grupo B</h1>
-            <table border = 1>
-                <thead>
-                <tr>
-                    <th>Nome do time</th>
-                    <th>Numero de jogos</th>
-                    <th>Vitorias</th>
-                    <th>Empates</th>
-                    <th>Derrotas</th>
-                    <th>Gols marcados</th>
-                    <th>Gols sofridos</th>
-                    <th>Saldo de gols</th>
-                    <th>Pontos</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="time" items="${timesDoGrupoB }">
-                    <tr>
-                        <td>${time.time.nomeTime}</td>
-                        <td>${time.numJogosDisputados}</td>
-                        <td>${time.vitorias}</td>
-                        <td>${time.empates}</td>
-                        <td>${time.derrotas}</td>
-                        <td>${time.golsMarcados}</td>
-                        <td>${time.golsSofridos}</td>
-                        <td>${time.saldoGols}</td>
-                        <td>${time.pontos}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
-    </div>
-
-    <div>
-        <c:if test="${not empty timesDoGrupoC }">
-            <h1>Grupo C</h1>
-            <table border = 1>
-                <thead>
-                <tr>
-                    <th>Nome do time</th>
-                    <th>Numero de jogos</th>
-                    <th>Vitorias</th>
-                    <th>Empates</th>
-                    <th>Derrotas</th>
-                    <th>Gols marcados</th>
-                    <th>Gols sofridos</th>
-                    <th>Saldo de gols</th>
-                    <th>Pontos</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="time" items="${timesDoGrupoC }">
-                    <tr>
-                        <td>${time.time.nomeTime}</td>
-                        <td>${time.numJogosDisputados}</td>
-                        <td>${time.vitorias}</td>
-                        <td>${time.empates}</td>
-                        <td>${time.derrotas}</td>
-                        <td>${time.golsMarcados}</td>
-                        <td>${time.golsSofridos}</td>
-                        <td>${time.saldoGols}</td>
-                        <td>${time.pontos}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
-    </div>
-
-    <div>
-        <c:if test="${not empty timesDoGrupoD }">
-            <h1>Grupo D</h1>
-            <table border = 1>
-                <thead>
-                <tr>
-                    <th>Nome do time</th>
-                    <th>Numero de jogos</th>
-                    <th>Vitorias</th>
-                    <th>Empates</th>
-                    <th>Derrotas</th>
-                    <th>Gols marcados</th>
-                    <th>Gols sofridos</th>
-                    <th>Saldo de gols</th>
-                    <th>Pontos</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="time" items="${timesDoGrupoD }">
-                    <tr>
-                        <td>${time.time.nomeTime}</td>
-                        <td>${time.numJogosDisputados}</td>
-                        <td>${time.vitorias}</td>
-                        <td>${time.empates}</td>
-                        <td>${time.derrotas}</td>
-                        <td>${time.golsMarcados}</td>
-                        <td>${time.golsSofridos}</td>
-                        <td>${time.saldoGols}</td>
-                        <td>${time.pontos}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </c:if>
-    </div>
-
 
 </body>
 </html>

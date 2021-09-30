@@ -1,6 +1,8 @@
 package com.example.campeonato_paulista_servlet.controller;
 
 import com.example.campeonato_paulista_servlet.model.Grupo;
+import com.example.campeonato_paulista_servlet.model.QuartaDeFinal;
+import com.example.campeonato_paulista_servlet.model.Time;
 import com.example.campeonato_paulista_servlet.model.TimeDoCampeonato;
 import com.example.campeonato_paulista_servlet.persistence.ITimeDoCampeonatoDao;
 import com.example.campeonato_paulista_servlet.persistence.TimeDoCampeonatoDao;
@@ -38,22 +40,11 @@ public class QuartasDeFinalServlet extends HttpServlet {
         String cmd = request.getParameter("button");
         String saida = "";
         String erro = "";
-        List<TimeDoCampeonato> timesDoGrupoA = new ArrayList<TimeDoCampeonato>();
-        List<TimeDoCampeonato> timesDoGrupoB = new ArrayList<TimeDoCampeonato>();
-        List<TimeDoCampeonato> timesDoGrupoC = new ArrayList<TimeDoCampeonato>();
-        List<TimeDoCampeonato> timesDoGrupoD = new ArrayList<TimeDoCampeonato>();
+        List<QuartaDeFinal> todasAsQuartasDeFinal = new ArrayList<QuartaDeFinal>();
         try {
             if (cmd.contains("Exibir quartas de final")) {
-                Grupo grupo = new Grupo();
-                grupo.setGrupo("A");
-                timesDoGrupoA = tdcDao.buscarQuartasDeFinalDoGrupo(grupo);
-                grupo.setGrupo("B");
-                timesDoGrupoB = tdcDao.buscarQuartasDeFinalDoGrupo(grupo);
-                grupo.setGrupo("C");
-                timesDoGrupoC= tdcDao.buscarQuartasDeFinalDoGrupo(grupo);
-                grupo.setGrupo("D");
-                timesDoGrupoD = tdcDao.buscarQuartasDeFinalDoGrupo(grupo);
-                saida = "Grupos encontrados com sucesso!";
+                todasAsQuartasDeFinal = tdcDao.buscarQuartasDeFinal();
+                saida = "Times da quarta de final encontrados com sucesso!";
             }
         } catch (SQLException e) {
             erro = e.getMessage();
@@ -61,10 +52,7 @@ public class QuartasDeFinalServlet extends HttpServlet {
         } finally {
             request.setAttribute("saida", saida);
             request.setAttribute("erro", erro);
-            request.setAttribute("timesDoGrupoA", timesDoGrupoA);
-            request.setAttribute("timesDoGrupoB", timesDoGrupoB);
-            request.setAttribute("timesDoGrupoC", timesDoGrupoC);
-            request.setAttribute("timesDoGrupoD", timesDoGrupoD);
+            request.setAttribute("todasAsQuartasDeFinal", todasAsQuartasDeFinal);
             RequestDispatcher rd = request.getRequestDispatcher("projecao_quartas_de_final.jsp");
             rd.forward(request, response);
         }
